@@ -6,7 +6,7 @@
   <property file="../settings/build-c3p0.properties" />
   <property file="build.properties" />
 
-  <property name="c3p0.version" value="0.9.5.2" />
+  <property name="c3p0.version" value="0.9.5.2-MULE-001-SNAPSHOT" />
 
   <property name="c3p0.copyright.year" value="2015" />
 
@@ -120,8 +120,28 @@
     <pathelement location="${junit.jar.file}" />
     <pathelement path="${extra.test.classpath}" />
   </path>
-  
+
   <target name="init">
+    <exec dir="." executable="sh">
+      <arg line="-c 'mvn dependency:get -U -Dtransitive=false -DgroupId=com.mchange -DartifactId=mchange-commons-java -Dversion=${mchange-commons-java.version} -Dpackaging=jar'" />
+    </exec>
+    <exec dir="." executable="sh">
+      <arg line="-c 'mvn dependency:get -U -Dtransitive=false -DgroupId=com.mchange -DartifactId=mchange-commons-java -Dversion=${mchange-commons-java.version} -Dpackaging=jar -Dclassifier=sources'" />
+    </exec>
+    <exec dir="." executable="sh">
+      <arg line="-c 'mvn dependency:get -U -Dtransitive=false -DgroupId=com.mchange -DartifactId=mchange-commons-java -Dversion=${mchange-commons-java.version} -Dpackaging=jar -Dclassifier=javadoc'" />
+    </exec>
+
+    <exec dir="." executable="sh">
+      <arg line="-c 'mvn dependency:copy -Dartifact=com.mchange:mchange-commons-java:${mchange-commons-java.version} -DoutputDirectory=./lib'" />
+    </exec>
+    <exec dir="." executable="sh">
+      <arg line="-c 'mvn dependency:copy -Dartifact=com.mchange:mchange-commons-java:${mchange-commons-java.version}:jar:sources -DoutputDirectory=./lib'" />
+    </exec>
+    <exec dir="." executable="sh">
+      <arg line="-c 'mvn dependency:copy -Dartifact=com.mchange:mchange-commons-java:${mchange-commons-java.version}:jar:javadoc -DoutputDirectory=./lib'" />
+    </exec>
+
     <tstamp>
       <format property="c3p0.timestamp" pattern="dd-MMMM-yyyy HH:mm:ss Z"/>
 
@@ -766,10 +786,10 @@
   </target>
 
    <!-- publishing to maven || see https://docs.sonatype.org/display/Repository/Sonatype+OSS+Maven+Repository+Usage+Guide -->
-   <property name="maven.snapshots.repository.id"  value="sonatype-nexus-snapshots" />
-   <property name="maven.snapshots.repository.url" value="https://oss.sonatype.org/content/repositories/snapshots" />
-   <property name="maven.staging.repository.id"    value="sonatype-nexus-staging" />
-   <property name="maven.staging.repository.url"   value="https://oss.sonatype.org/service/local/staging/deploy/maven2" />
+   <property name="maven.snapshots.repository.id"  value="mule-snapshots" />
+   <property name="maven.snapshots.repository.url" value="https://repository-master.mulesoft.org/nexus/content/repositories/snapshots" />
+   <property name="maven.staging.repository.id"    value="mule-releases" />
+   <property name="maven.staging.repository.url"   value="https://repository-master.mulesoft.org/nexus/content/repositories/releases" />
 
    <property name="maven.src.dir"                  value="${src.dir}/maven" />
    <property name="build.maven-snapshot.dir"       value="${build.dir}/maven-snapshot" />
@@ -812,6 +832,7 @@
        <arg value="-Dfile=${maven.snapshot.jar.file}" />
      </artifact:mvn>
      -->
+
      <exec executable="mvn" resolveexecutable="false">
        <arg value="org.apache.maven.plugins:maven-deploy-plugin:2.7:deploy-file" />
        <arg value="-Durl=${maven.snapshots.repository.url}" />
