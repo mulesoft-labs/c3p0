@@ -5,7 +5,7 @@
 
  <modelVersion>4.0.0</modelVersion>
 
- <groupId>com.mchange</groupId>
+ <groupId>org.mule.mchange</groupId>
  <artifactId>c3p0</artifactId> 
  <packaging>jar</packaging> 
  <version>@c3p0.version.maven@</version>

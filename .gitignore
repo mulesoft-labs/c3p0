@@ -9,3 +9,30 @@ dbms/oracle-thin/build/apidocs/*
 dbms/oracle-thin/dist/*
 
 
+# use glob syntax.
+syntax: glob
+*.class
+*~
+*.bak
+*.off
+*.old
+.DS_Store
+
+# building
+target
+/build
+/dist
+/test
+/lib
+
+# Eclipse
+.classpath
+.project
+.settings
+
+# IDEA
+.idea
+*.iml
+*.ipr
+*.iws
+/target
