@@ -885,8 +885,11 @@
        <arg value="-DrepositoryId=${maven.staging.repository.id}" />
        <arg value="-DpomFile=${build.maven-release.dir}/pom.xml" />
        <arg value="-Dfile=${maven.release.jar.file}" />
-       <arg value="-Dgpg.passphrase=${gpg.passphrase}" />
        <arg value="--settings=${maven.settings.path}" />
+       <arg value="-Dgpg.passphrase=${gpg.passphrase}" />
+       <arg value="-Dgpg.homedir=${gpg.homedir}" />
+       <arg value="-Dgpg.useagent=${gpg.useagent}" />
+       <arg value="-Dgpg.lockMode=${gpg.lockMode}" />
 
        <!-- work around Maven 2.2.1 corrupt multithreading bug -->
        <!-- see http://jira.codehaus.org/browse/MNG-4742 http://jira.codehaus.org/browse/MNG-4301 -->
@@ -914,7 +917,11 @@
        <arg value="-DrepositoryId=${maven.staging.repository.id}" />
        <arg value="-DpomFile=${build.maven-release.dir}/pom.xml" />
        <arg value="-Dfile=${maven.release.javadoc.jar.file}" />
+       <arg value="--settings=${maven.settings.path}" />
        <arg value="-Dgpg.passphrase=${gpg.passphrase}" />
+       <arg value="-Dgpg.homedir=${gpg.homedir}" />
+       <arg value="-Dgpg.useagent=${gpg.useagent}" />
+       <arg value="-Dgpg.lockMode=${gpg.lockMode}" />
        <arg value="-Dclassifier=javadoc" />
 
        <!-- work around Maven 2.2.1 corrupt multithreading bug -->
@@ -942,7 +949,11 @@
        <arg value="-DrepositoryId=${maven.staging.repository.id}" />
        <arg value="-DpomFile=${build.maven-release.dir}/pom.xml" />
        <arg value="-Dfile=${maven.release.sources.jar.file}" />
+       <arg value="--settings=${maven.settings.path}" />
        <arg value="-Dgpg.passphrase=${gpg.passphrase}" />
+       <arg value="-Dgpg.homedir=${gpg.homedir}" />
+       <arg value="-Dgpg.useagent=${gpg.useagent}" />
+       <arg value="-Dgpg.lockMode=${gpg.lockMode}" />
        <arg value="-Dclassifier=sources" />
 
        <!-- work around Maven 2.2.1 corrupt multithreading bug -->
