@@ -6,7 +6,7 @@
   <property file="../settings/build-c3p0.properties" />
   <property file="build.properties" />
 
-  <property name="c3p0.version" value="0.9.5.2-MULE-001-SNAPSHOT" />
+  <property name="c3p0.version" value="0.9.5.2-MULE-001" />
 
   <property name="c3p0.copyright.year" value="2015" />
 
@@ -790,6 +790,7 @@
    <property name="maven.snapshots.repository.url" value="https://repository-master.mulesoft.org/nexus/content/repositories/snapshots" />
    <property name="maven.staging.repository.id"    value="mule-releases" />
    <property name="maven.staging.repository.url"   value="https://repository-master.mulesoft.org/nexus/content/repositories/releases" />
+   <property name="maven.settings.path"            value="${user.home}/.m2/settings.xml" />
 
    <property name="maven.src.dir"                  value="${src.dir}/maven" />
    <property name="build.maven-snapshot.dir"       value="${build.dir}/maven-snapshot" />
@@ -838,6 +839,7 @@
        <arg value="-Durl=${maven.snapshots.repository.url}" />
        <arg value="-DrepositoryId=${maven.snapshots.repository.id}" />
        <arg value="-DpomFile=${build.maven-snapshot.dir}/pom.xml" />
+       <arg value="--settings=${maven.settings.path}" />
 
        <!-- work around Maven 2.2.1 corrupt multithreading bug -->
        <!-- see http://jira.codehaus.org/browse/MNG-4742 http://jira.codehaus.org/browse/MNG-4301 -->
@@ -884,6 +886,7 @@
        <arg value="-DpomFile=${build.maven-release.dir}/pom.xml" />
        <arg value="-Dfile=${maven.release.jar.file}" />
        <arg value="-Dgpg.passphrase=${gpg.passphrase}" />
+       <arg value="--settings=${maven.settings.path}" />
 
        <!-- work around Maven 2.2.1 corrupt multithreading bug -->
        <!-- see http://jira.codehaus.org/browse/MNG-4742 http://jira.codehaus.org/browse/MNG-4301 -->
