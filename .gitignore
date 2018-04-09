@@ -25,6 +25,8 @@ target
 /test
 /lib
 
+/aux
+
 # Eclipse
 .classpath
 .project
